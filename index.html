@@ -13,10 +13,8 @@
   </head>
   <body>
     <div class="container">
-      <h1 id="word_1"></h1>
-      <h1 id="word_2"></h1>
-      <h1 id="word_3"></h1>
-      <button onclick="reloadRandomWords()">Get 3 random words!</button>
+      <h1 id="word"></h1>
+      <button onclick="reloadRandomWords()">Generate random words!</button>
     </div>
     <script>
       const words = [
@@ -2314,9 +2312,9 @@
       ];
       const len = words.length;
 
-      const getThreeRandomWords = () => {
+      const getRandomWords = (amount = 1) => {
         let arr = [];
-        for (let i = 0; i < 3; i++) {
+        for (let i = 0; i < amount; i++) {
           const randomIndex = Math.floor(Math.random() * len);
           arr.push(words[randomIndex]);
         }
@@ -2325,11 +2323,9 @@
       };
 
       const reloadRandomWords = () => {
-        let currentWords = getThreeRandomWords();
-        console.log(currentWords);
-        for (let i = 0; i < 3; i++) {
-          document.getElementById(`word_${i + 1}`).innerHTML = currentWords[i];
-        }
+        let currentWord = getRandomWords();
+        console.log(currentWord);
+          document.getElementById("word").innerHTML = currentWord[0];
       };
 
       window.onload = reloadRandomWords;
